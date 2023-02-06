@@ -1,0 +1,54 @@
+{% extends 'landing/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <!-- back to post button -->
+    <div class="row mt-5">
+        <div class="col-md-5 col-sm-6">
+            <a href="{% url 'post-detail' object.pk %}" class="btn btn-light">Back to post</a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-5 col-sm-12 border-bottom">
+            <h5> Update your post! </h5>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3 mb-3">
+        <div class="col-md-5 col-sm-12 border-bottom">
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- body -->
+            <div class="form-group {% if form.body.errors %} has-error {% endif %}">
+                <label for="id_body">Body</label>
+                <textarea class="form-control" id="id_body" name="body" rows="3">{{ form.body.value }}</textarea>
+                {% for error in form.body.errors %}
+                    <span class="help-block">{{ error }}</span>
+                {% endfor %}
+            </div> 
+            <!-- image -->
+            <div class="form-group" {% if form.image.errors %} has-error {% endif %}>
+                <label for="id_image">Image</label>
+                <img type="file" class="form-control-file" id="id_image" name="image" multiple>{{ form.image.value }}</img>
+                {% for error in form.image.errors %}
+                    <span class="help-block">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="d-grid gap-2">
+                <button class="btn mt-3" style="background-color: #fda742; color: #fcfcfc"> Submit </button>
+            </div>
+            </form>  
+        </div>
+    </div>
+
+    
+
+
+    
+</div>
+
+{% endblock content %}

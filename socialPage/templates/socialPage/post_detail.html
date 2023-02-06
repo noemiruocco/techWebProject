@@ -1,0 +1,144 @@
+{% extends 'landing/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <!-- back to feed button -->
+    <div class="row mt-5">
+        <div class="col-md-5 col-sm-6">
+            <a href="{% url 'post-list' %}" class="btn btn-light">Back to feed</a>
+        </div>
+    </div>
+
+    <!-- detailed post -->
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-5 col-sm-12 ">
+            <!-- single card -->
+            <div class="card mb-3" style="max-width: 540px; border-color: #fda742; border-radius: 10px">
+                <div class="row g-0">
+                    <!-- post picture(s) -->
+                    <div class="col-md-4">
+                        {% if post.image %}
+                        <img src="{{ post.image.url }}" class="img-fluid rounded-start" max-width="100%" height="100vh" alt="post images">
+                        {% endif %}
+                    </div>
+                    <!-- post text -->
+                    <div class="col-md-8">
+                        <div class="card-title" >
+                            <!-- author icon -->
+                            <a href="{% url 'profile' post.author.profile.pk %}">
+                                <img class="rounded-circle" style="float: left; margin-right: 1rem" height="30" width="30" src="{{ post.author.profile.picture.url }}"/>
+                            </a>
+                            <!-- post author --> 
+                            <a href="{% url 'profile' post.author.profile.pk %}" style="color:#000; text-decoration-line: underline; text-decoration-style: double; text-decoration-color: #fda742;">
+                                <h5> @{{ post.author }} </h5>
+                            </a>
+                            <!-- edit or delete post buttons -->
+                            {% if request.user == post.author %}
+                            <div class="btn-group" role="group" aria-label="Edit or delete buttons">
+                                <button type="button" class="btn" style="border-color: #fda742;">
+                                    <a href="{% url 'post-edit' post.pk %}" style="color: #333;"><i class="fas fa-edit"></i></a>  
+                                </button>
+                                <button type="button" class="btn" style="border-color: #fda742;">
+                                    <a href="{% url 'post-delete' post.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
+                                </button>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <!-- post body/text-->
+                            <p class="card-text">
+                                <p> {{ post.body }} </p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- post footer/created on and likes/dislikes -->
+                <div class="card-footer" style="border-color: #fda742;">
+                    <div class="row">
+                        <div class="d-flex flex-row">
+                            <!-- created on -->
+                            <small class="fst-italic" style="font-size: 12px">
+                                {{ post.created_on }}    
+                            </small>
+                            <!-- likes and dislikes -->
+                            <form method="POST" action="{% url 'like' post.pk %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{{ request.path }}"></input>
+                                <button style="background-color: transparent; border: none; box-shadow: none;" type="submit"> 
+                                    <i class="fa-regular fa-heart"> <span style="font-size: 13px"> {{ post.likes.all.count }} </span> </i>
+                                </button>
+                            </form>
+                            <form method="POST" action="{% url 'dislike' post.pk %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{{ request.path }}"></input>
+                                <button style="background-color: transparent; border: none; box-shadow: none;" type="submit"> 
+                                    <i class="far fa-thumbs-down"> <span style="font-size: 13px"> {{ post.dislikes.all.count }} </span> </i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+
+    <!-- divider -->
+    <div class="row justify-content-center">
+        <hr style="1px rounded #333; width: 80%">
+    </div>
+
+    <!-- post a comment -->
+    <div class="row justify-content-center  mb-3">
+        <div class="col-md-5 col-sm-12 ">
+            <!-- comment form -->
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_comment">Say something about this post </label>
+                    <input type="text" class="form-control" id="id_comment" name="comment">
+                    {% if form.comment.errors %}
+                    {% for error in form.comment.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group d-grid garp-2">
+                    <button class="btn mt-3" style="background-color: #fda742; color: #fcfcfc"> Submit </button>    
+                </div>
+            </form>   
+
+        </div>
+    </div>   
+    
+    <!-- divider -->
+    <div class="row justify-content-center">
+        <hr style="1px rounded #333; width: 80%">
+    </div>
+
+    <!-- other post comments -->
+    {% for comment in comments %}
+    <div class="row justify-content-center mt-2 mb-3">
+        <div class="col-md-5 col-sm-12 border-bottom">
+            <!-- comment author icon -->
+            <a href="{% url 'profile' comment.author.profile.pk %}">
+                <img class="rounded-circle" style="float: left; margin-right: 1rem" height="30" width="30" src="{{ comment.author.profile.picture.url }}"/>
+            </a>
+            <!-- comment text -->
+            <p>
+                <a srtyle="text-decoration: none" class="text-primary" href="{% url 'profile' comment.author.profile.pk %}"> @{{ comment.author }} </a> 
+                {% if request.user == comment.author %}
+                    <a href="{% url 'comment-delete' post.pk comment.pk %}" style="color: #333;"><i class="fas fa-trash"></i></a>
+                {% endif %}
+            </p>
+            <p> {{ comment.comment }} </p>
+            <p class="fst-italic" style="font-size: 12px"> {{ comment.created_on }} </p>
+        </div>
+    </div> 
+    {% endfor %}
+
+</div>
+
+{% endblock content %}
