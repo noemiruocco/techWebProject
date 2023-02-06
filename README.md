@@ -5,6 +5,7 @@ Ruocco Noemi, Canestro Giancarlo
 Questo è un progetto universitario a fine didattico
 
 Link presentazione idea Sharefeed: https://www.canva.com/design/DAFRrgDrRxI/8GP3Hjd6dni_sgcAgjP1LA/view?utm_content=DAFRrgDrRxI&utm_campaign=designshare&utm_medium=link&utm_source=homepage_design_menu
+
 Link presentazione finale Sharefeed: https://www.canva.com/design/DAFRfRuGx2c/CG77Tltb7vFUqNjMctyslQ/view?utm_content=DAFRfRuGx2c&utm_campaign=designshare&utm_medium=link&utm_source=homepage_design_menu
 
 N.B. Nel codice presente al momento l'implementazione della parte dedicata alla grocery list e allo storage dei prodotti non è conclusa. 
