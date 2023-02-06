@@ -2,8 +2,7 @@
 
 -- autori e altre informazioni -- 
 
-Ruocco Noemi, Canestro Giancarlo
- 
+Ruocco Noemi, Canestro Giancarlo.
 Questo è un progetto universitario a fine didattico
 
 Link presentazione idea Sharefeed: https://www.canva.com/design/DAFRrgDrRxI/8GP3Hjd6dni_sgcAgjP1LA/view?utm_content=DAFRrgDrRxI&utm_campaign=designshare&utm_medium=link&utm_source=homepage_design_menu
@@ -12,7 +11,9 @@ Link presentazione finale Sharefeed: https://www.canva.com/design/DAFRfRuGx2c/CG
 
 N.B. Nel codice presente al momento l'implementazione della parte dedicata alla grocery list e allo storage dei prodotti non è conclusa. 
 
+
 -- pre condizioni -- 
+
 Per poter ricreare questo progetto e per poterlo testare senza problemi bisogna essere sicuri di aver installato:
 1) Python 
 2) Django, in particolare django-allauth e django-crispy-forms 
