@@ -1,0 +1,100 @@
+{% extends 'landing/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <!-- back to user profile button -->
+    <div class="row mt-5">
+        <div class="col-md-5 col-sm-6">
+            <a href="{% url 'profile' object.pk %}" class="btn btn-light">Back to profile</a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-5 col-sm-12 border-bottom">
+            <h5>Update your profile</h5>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3 mb-5">
+        <div class="col-md-5 col-sm-12 border-bottom">
+
+            <!-- form fields -->
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- name -->
+                <div class="form-group">
+                    <label for="id_name">Name : </label>
+                    <input type="text" class="form-control" id="id_name" name="name" value="{{ form.name.value }}">
+                    {% if form.name.errors%}
+                    {% for error in form.name.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- user icon -->
+                <div class="form-group mb-3">
+                    <label for="id_picture" class="form-label">Profile picture :</label>
+                    <input type="file" class="form-control" id="id_picture" name="image" value="{{ form.image.value }}">
+                    {% if form.image.errors %}
+                        {% for error in form.image.errors %}
+                            <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- bio -->
+                <div class="form-group">
+                    <label for="id_bio">Bio : </label>
+                    <input type="text" class="form-control" id="id_bio" name="bio" value="{{ form.bio.value }}">
+                    {% if form.bio.errors %}
+                    {% for error in form.bio.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- birthday -->
+                <div class="form-group">
+                    <label for="id_birth_date">Birth Date : </label>
+                    <input type="date" class="form-control" id="id_birth_date" name="birth_date" value="{{ form.birth_date.value }}">
+                    {% if form.birth_date.errors %}
+                    {% for error in form.birth_date.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- location -->
+                <div class="form-group">
+                    <label for="id_location">Location : </label>
+                    <input type="text" class="form-control" id="id_location" name="location" value="{{ form.location.value }}">
+                    {%if form.location.errors.errors %}
+                    {% for error in form.location.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- role -->
+                <div class="form-group">
+                    <label for="id_role">Role : </label>
+                    <select class="form-select" id="id_role" name="role">
+                    {% for key, value in form.role.field.choices %}
+                        <option value="{{ key }}" {% if key == form.role.value %} selected {% endif %}> {{ value }} </option>
+                    {% endfor %}
+                    </select>
+                    {% if form.role.errors %}
+                    {% for error in form.role.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- submit button -->
+                <div class="form-group d-grid gap-2">
+                    <button class="btn mt-3" style="background-color: #fda742; color: #fcfcfc"> Save changes </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+     
+
+</div>
+{% endblock content %}

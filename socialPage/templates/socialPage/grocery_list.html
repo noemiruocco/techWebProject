@@ -1,0 +1,68 @@
+{% extends 'landing/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <!-- back to feed button -->
+    <div class="row mt-5">
+        <div class="col-md-3 col-sm-6">
+            <a href="{% url 'post-list' %}" class="btn btn-light"> Back to feed </a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-6 col-sm-12">  
+
+            <!-- if you want to add items -->
+            <div class="row justify-content-center mt-3" style="padding-bottom: 30px;">
+                <div class="col-md-8 col-sm-12">
+                    <div class="d-grid gap-2">
+                    <button class="btn" style="background-color: #fda742;"> 
+                        <a href="{% url 'add-item' %}" style="color: #fcfcfc"> Add items </a>
+                    </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- user grocery list -->
+            <h2>{{ grocery_list.name }}</h2>
+            <!-- grocery list items -->
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">Item name</th>
+                        <th scope="col"> Buy </th>
+                        <th scope="col"> Delete </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in grocery_items %}
+                        <tr>
+                            <td>{{ item.item_name }}</td>
+                            <td> 
+                                <!-- buy item button -->
+                                <button type="button" class="btn btn-outline-success">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                </button> </td>
+                            <td>
+                                <!-- delete item button -->
+                                <button type="button" class="btn btn-outline-danger">
+                                    <i class="fas fa-trash"></i></a> 
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>  
+
+                
+            
+
+        </div>
+    </div>  
+
+</div>
+
+{% endblock content %}

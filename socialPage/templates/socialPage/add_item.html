@@ -1,0 +1,64 @@
+{% extends 'landing/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <!-- back to feed button -->
+    <div class="row mt-5">
+        <div class="col-md-3 col-sm-6">
+            <a href="{% url 'grocery-list' %}" class="btn btn-light"> Back to grocery list </a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-6 col-sm-12">  
+            <h6>If the item you're searching for isn't already in our database : </h6>
+            <!-- create a new item -->
+            <div class="d-grid gap-2" style="padding-bottom: 20px;">
+                <button class="btn" style="background-color: #fda742;"> 
+                    <a href="#"  style="color: #fcfcfc"> Create a new item to add </a>
+                </button>
+            </div>
+            <!-- divider -->
+            <div class="row">
+                <hr style="1px rounded #333; width: 100%">
+            </div>
+
+            <!-- add an existing item -->
+            <h4>Already existing items inside the database</h4>
+            <!-- divider -->
+            <div class="row">
+                <hr style="1px rounded #333; width: 100%">
+            </div>
+            <!-- items list -->
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">Item name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col"> </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td>{{ item.item_name }}</td>
+                            <td>{{ item.food_category }}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-success">
+                                    <i class="fa-regular fa-plus"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>  
+
+</div>
+
+{% endblock content %}
