@@ -11,7 +11,6 @@ Link presentazione finale Sharefeed: https://www.canva.com/design/DAFRfRuGx2c/CG
 
 N.B. Nel codice presente al momento l'implementazione della parte dedicata alla grocery list e allo storage dei prodotti non è conclusa. 
 
-
 -- pre condizioni -- 
 
 Per poter ricreare questo progetto e per poterlo testare senza problemi bisogna essere sicuri di aver installato:
@@ -54,5 +53,6 @@ The project was made following these steps:
 4)Make as many applications as we needed (in this case we separated the landing page part from the core of the project itself)
 
 !!Remember!!
+
 In order to run the code, once the files of the socialnetwork folder are downloaded and everything needed is correctly installed (you need to create an admin too), you just need to execute the project, (on windows with the command: python manage.py runserver).
 If some modifications are made on the .py file (doesn't apply on template's elements), then we suggest a migrate, a makemigrations and a migrate if needed, just to be sure that the project runs smoothly and with the latest changes.
