@@ -1,0 +1,44 @@
+{% if user.is_authenticated %}
+<nav class="navbar navbar-expand-lg" style="background-color: #fda769;">
+  <div class="container-fluid">
+    <!-- social name button -->
+    <a class="navbar-brand" href="{% url 'post-list' %}"> 
+      <i class="fa-solid fa-utensils"></i> Sharefeed
+    </a>
+
+    <!-- menu button for small display -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- dropdown menu -->
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Account
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'profile' request.user.profile.pk %}">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'grocery-list' %}">Grocery list</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Storage</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- search field -->
+      <form class="d-flex" role="search" method="GET" action="{% url 'profile-search' %}">
+        <input class="form-control me-2" type="search" placeholder="..." aria-label="..." name="query" value="{{ request.GET.query }}">
+        <button class="btn btn-outline-light" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
+    </div>
+
+  </div>
+</nav>
+{% endif %}
