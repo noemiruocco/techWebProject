@@ -47,10 +47,10 @@ In order to recreate this project you need to install:
 3) Pillow
 
 The project was made following these steps:
-1)Create an admin for the system
-2)Start a project (in this case is "social network")
-3)Navigate through the directory's project
-4)Make as many applications as we needed (in this case we separated the landing page part from the core of the project itself)
+1) Create an admin for the system
+2) Start a project (in this case is "social network")
+3) Navigate through the directory's project
+4) Make as many applications as we needed (in this case we separated the landing page part from the core of the project itself)
 
 !!Remember!!
 
