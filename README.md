@@ -1,9 +1,9 @@
 // Sharefeed project //
 -- autori -- 
-...
+Ruocco Noemi, Canestro Giancarlo
 
 -- breve descrizione del funzionamento -- 
-...
+Questo è un progetto universitario a fine didattico
 N.B. Al codice presente al momento non è conclusa l'implementazione della parte dedicata alla grocery list e allo storage dei prodotti. 
 
 -- pre condizioni -- 
