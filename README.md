@@ -30,6 +30,7 @@ Nel caso in cui si sono modificati elementi all'interno dei file .py oltre che i
 Noemi Ruocco, Canestro Giancarlo
 
 This is an university project for educational purposes.
+
 N.B. At the time of writing the implementation for the grocery list and the storage section hasn't been finished yet.
 
 -- preparation --
